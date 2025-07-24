@@ -1,0 +1,12 @@
+D:\Mike's Folder\Programming\GIT\Media-Player\bin\Debug\Media Player.exe.config
+D:\Mike's Folder\Programming\GIT\Media-Player\bin\Debug\Media Player.exe
+D:\Mike's Folder\Programming\GIT\Media-Player\bin\Debug\Media Player.pdb
+D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Media Player.csproj.AssemblyReference.cache
+D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Interop.WMPLib.dll
+D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Media Player.csproj.ResolveComReference.cache
+D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Media_Player.Form1.resources
+D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Media_Player.Properties.Resources.resources
+D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Media Player.csproj.GenerateResource.cache
+D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Media Player.csproj.CoreCompileInputs.cache
+D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Media Player.exe
+D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Media Player.pdb
