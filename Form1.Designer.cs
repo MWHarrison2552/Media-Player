@@ -1,24 +1,11 @@
 ﻿namespace Media_Player
 {
-    partial class Form1 
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
 
         #region Windows Form Designer generated code
 
@@ -40,6 +27,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.Previous = new System.Windows.Forms.Button();
             this.Next = new System.Windows.Forms.Button();
+            this.songListBox = new System.Windows.Forms.ListBox(); // Only one declaration
             this.SuspendLayout();
             // 
             // Open
@@ -134,8 +122,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(827, 20);
             this.label1.TabIndex = 8;
-            this.label1.Text = "This simple media player uses Windows Media Player controls in order to play MP3\'" +
-    "s. I am unsure if it plays other files.";
+            this.label1.Text = "This simple media player uses Windows Media Player controls in order to play MP3's.\nI am unsure if it plays other files.";
             // 
             // label2
             // 
@@ -145,8 +132,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(591, 20);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Open selects a file, Play then plays it, Pauses will pause, and Exit ends the pro" +
-    "gram";
+            this.label2.Text = "Open selects a file, Play then plays it, Pauses will pause, and Exit ends the program";
             // 
             // label3
             // 
@@ -157,6 +143,15 @@
             this.label3.Size = new System.Drawing.Size(445, 20);
             this.label3.TabIndex = 10;
             this.label3.Text = "Want to add: Library, Previous/Next, Stop, Attach progress bar";
+            // 
+            // songListBox
+            // 
+            this.songListBox.FormattingEnabled = true;
+            this.songListBox.Location = new System.Drawing.Point(12, 12);
+            this.songListBox.Name = "songListBox";
+            this.songListBox.Size = new System.Drawing.Size(200, 186);
+            this.songListBox.TabIndex = 13;
+            this.songListBox.DoubleClick += new System.EventHandler(this.songListBox_DoubleClick);
             // 
             // Form1
             // 
@@ -175,6 +170,7 @@
             this.Controls.Add(this.fileLabel);
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.Open);
+            this.Controls.Add(this.songListBox);
             this.Name = "Form1";
             this.Text = "MP3 Media Player";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -197,6 +193,16 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button Previous;
         private System.Windows.Forms.Button Next;
+        // Step-by-step plan:
+        // 1. Check for duplicate declarations of 'songListBox' in Form1.Designer.cs and Form1.cs.
+        // 2. Remove any duplicate field declarations, keeping only one in Form1.Designer.cs.
+        // 3. Ensure only one initialization in InitializeComponent().
+        // 4. Save and rebuild to resolve CS0229 ambiguity errors.
+
+        // Solution: Remove any duplicate 'songListBox' field declaration from Form1.cs (the code-behind file).
+        // Only keep the following in Form1.Designer.cs:
+
+        private System.Windows.Forms.ListBox songListBox; // Only one field declaration
     }
 }
 

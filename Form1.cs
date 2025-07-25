@@ -23,27 +23,54 @@ namespace Media_Player
     public partial class Form1 : Form
     {
         WMPLib.WindowsMediaPlayer Player = new WMPLib.WindowsMediaPlayer();     // Create "Player" object from wmp libray.
+        private List<string> mediaFiles = new List<string>();
+        private int currentFileIndex = -1;
+        private string sharedFolderPath = @"D:\My Shared Folder";
+        private bool isProgrammaticSelection = false;
+
         public Form1()
         {
             InitializeComponent();
         }
+
         private void Open_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog open = new OpenFileDialog())
+            using (var folderDialog = new FolderBrowserDialog())
             {
+                folderDialog.Description = "Select a folder containing MP3 files";
+                folderDialog.SelectedPath = sharedFolderPath;
 
-                open.InitialDirectory = "D:\\My Shared Folder";                                 // Default starting directory
-                open.Filter = "mp3 files (*.mp3)|*.mp3|All files (*.*)|*.*";    // Acceptable files in file types drop down
-                open.FilterIndex = 1;                                           // Which file type the filter starts in. MP3 or All Files in this case.
-                open.RestoreDirectory = true;                                   // Starts on the directory the user ended on last.
-
-                if (open.ShowDialog() == DialogResult.OK)
+                if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
-                    fileName.Text = Path.GetFileName(open.FileName);            // Sets only the file name instead of the full path in the text box
-                    Player.URL = open.FileName;                                 // Sets Player object path 
+                    sharedFolderPath = folderDialog.SelectedPath;
+                    LoadMediaFiles();
+                    PopulateSongList();
+                    if (mediaFiles.Count > 0)
+                    {
+                        currentFileIndex = 0;
+                        PlayFileAtIndex(currentFileIndex);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No media files found in the selected folder.");
+                    }
                 }
+            }
+        }
 
-                }
+        private void PlayFileAtIndex(int index)
+        {
+            if (index >= 0 && index < mediaFiles.Count)
+            {
+                currentFileIndex = index;
+                fileName.Text = Path.GetFileName(mediaFiles[index]);
+                Player.URL = mediaFiles[index];
+                Player.controls.play();
+
+                isProgrammaticSelection = true;
+                songListBox.SelectedIndex = index;
+                isProgrammaticSelection = false;
+            }
         }
 
         // Play button.
@@ -60,6 +87,46 @@ namespace Media_Player
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LoadMediaFiles();
+            PopulateSongList();
+        }
+
+        private void LoadMediaFiles()
+        {
+            if (Directory.Exists(sharedFolderPath))
+            {
+                mediaFiles = Directory.GetFiles(sharedFolderPath, "*.mp3").ToList();
+            }
+            else
+            {
+                mediaFiles.Clear();
+            }
+        }
+
+        private void PopulateSongList()
+        {
+            // Place the ListBox on the right side of the form
+            int rightMargin = 20;
+            int listBoxWidth = 300;
+            int listBoxHeight = 300;
+            int listBoxX = this.ClientSize.Width - listBoxWidth - rightMargin;
+            int listBoxY = 50;
+
+            songListBox.Location = new Point(listBoxX, listBoxY);
+            songListBox.Size = new Size(listBoxWidth, listBoxHeight);
+
+            songListBox.Items.Clear();
+            foreach (var file in mediaFiles)
+            {
+                songListBox.Items.Add(Path.GetFileName(file));
+            }
+        }
+
+        // Play the selected song when double-clicked
+        private void songListBox_DoubleClick(object sender, EventArgs e)
+        {
+            int index = songListBox.SelectedIndex;
+            PlayFileAtIndex(index);
         }
 
         private void Pause_Click(object sender, EventArgs e)
@@ -69,14 +136,26 @@ namespace Media_Player
 
         private void Previous_Click(object sender, EventArgs e)
         {
-            // TODO: Implement previous track logic
-            MessageBox.Show("Previous button clicked.");
+            if (mediaFiles.Count == 0) return;
+            currentFileIndex--;
+            if (currentFileIndex < 0) currentFileIndex = mediaFiles.Count - 1;
+            PlayFileAtIndex(currentFileIndex);
         }
 
         private void Next_Click(object sender, EventArgs e)
         {
-            // TODO: Implement next track logic
-            MessageBox.Show("Next button clicked.");
+            if (mediaFiles.Count == 0) return;
+            currentFileIndex++;
+            if (currentFileIndex >= mediaFiles.Count) currentFileIndex = 0;
+            PlayFileAtIndex(currentFileIndex);
+        }
+
+        private void songListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isProgrammaticSelection)
+            {
+                PlayFileAtIndex(songListBox.SelectedIndex);
+            }
         }
     }
 }
