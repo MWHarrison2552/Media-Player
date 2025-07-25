@@ -38,6 +38,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.Previous = new System.Windows.Forms.Button();
+            this.Next = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Open
@@ -104,6 +106,26 @@
             this.Pause.UseVisualStyleBackColor = true;
             this.Pause.Click += new System.EventHandler(this.Pause_Click);
             // 
+            // Previous
+            // 
+            this.Previous.Location = new System.Drawing.Point(20, 144);
+            this.Previous.Name = "Previous";
+            this.Previous.Size = new System.Drawing.Size(75, 23);
+            this.Previous.TabIndex = 11;
+            this.Previous.Text = "Previous";
+            this.Previous.UseVisualStyleBackColor = true;
+            this.Previous.Click += new System.EventHandler(this.Previous_Click);
+            // 
+            // Next
+            // 
+            this.Next.Location = new System.Drawing.Point(315, 144);
+            this.Next.Name = "Next";
+            this.Next.Size = new System.Drawing.Size(75, 23);
+            this.Next.TabIndex = 12;
+            this.Next.Text = "Next";
+            this.Next.UseVisualStyleBackColor = true;
+            this.Next.Click += new System.EventHandler(this.Next_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -141,6 +163,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 441);
+            this.Controls.Add(this.Next);
+            this.Controls.Add(this.Previous);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -171,6 +195,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button Previous;
+        private System.Windows.Forms.Button Next;
     }
 }
 

@@ -32,7 +32,7 @@ namespace Media_Player
             using (OpenFileDialog open = new OpenFileDialog())
             {
 
-                open.InitialDirectory = "C:\\";                                 // Default starting directory
+                open.InitialDirectory = "D:\\My Shared Folder";                                 // Default starting directory
                 open.Filter = "mp3 files (*.mp3)|*.mp3|All files (*.*)|*.*";    // Acceptable files in file types drop down
                 open.FilterIndex = 1;                                           // Which file type the filter starts in. MP3 or All Files in this case.
                 open.RestoreDirectory = true;                                   // Starts on the directory the user ended on last.
@@ -65,6 +65,18 @@ namespace Media_Player
         private void Pause_Click(object sender, EventArgs e)
         {
             Player.controls.pause();                                            // Pauses the currently playing song
+        }
+
+        private void Previous_Click(object sender, EventArgs e)
+        {
+            // TODO: Implement previous track logic
+            MessageBox.Show("Previous button clicked.");
+        }
+
+        private void Next_Click(object sender, EventArgs e)
+        {
+            // TODO: Implement next track logic
+            MessageBox.Show("Next button clicked.");
         }
     }
 }

@@ -10,3 +10,4 @@ D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Media Player.csproj.Gene
 D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Media Player.csproj.CoreCompileInputs.cache
 D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Media Player.exe
 D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Media Player.pdb
+D:\Mike's Folder\Programming\GIT\Media-Player\obj\Debug\Media Player.exe.config
